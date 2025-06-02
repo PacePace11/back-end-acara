@@ -1,11 +1,11 @@
 import { Types } from "mongoose";
-import { user } from "../models/user.models";
+import { User } from "../models/user.models";
 import jwt from "jsonwebtoken";
 import { SECRET } from "./env";
 
 export interface IUserToken
   extends Omit<
-    user,
+    User,
     | "password"
     | "activationCode"
     | "isActive"
@@ -14,7 +14,7 @@ export interface IUserToken
     | "profilePicture"
     | "username"
   > {
-  id: Types.ObjectId;
+  id?: Types.ObjectId;
 }
 
 export const generateToken = (user: IUserToken): string => {
